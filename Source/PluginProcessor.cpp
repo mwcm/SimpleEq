@@ -113,10 +113,10 @@ void SimpleEqAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     );
 
     auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
-    updateCutFilter(leftLowCut, cutCoefficients, chainSettings);
+    updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
 
     auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
-    updateCutFilter(rightLowCut, cutCoefficients, chainSettings);
+    updateCutFilter(rightLowCut, cutCoefficients, chainSettings.lowCutSlope);
 
 
     updatePeakFilter(chainSettings);
@@ -181,10 +181,10 @@ void SimpleEqAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     );
 
     auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
-    updateCutFilter(leftLowCut, cutCoefficients, chainSettings);
+    updateCutFilter(leftLowCut, cutCoefficients, chainSettings.lowCutSlope);
     
     auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
-    updateCutFilter(rightLowCut, cutCoefficients, chainSettings);
+    updateCutFilter(rightLowCut, cutCoefficients, chainSettings.lowCutSlope);
 
 
     juce::dsp::AudioBlock<float> block(buffer);

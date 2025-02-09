@@ -102,7 +102,7 @@ private:
     void updateCutFilter(
         ChainType& leftLowCut,
         const CoefficientType& cutCoefficients,
-        const ChainSettings& chainSettings
+        const Slope& lowCutSlope
     ) {
         leftLowCut.template setBypassed<0>(true);
         leftLowCut.template setBypassed<1>(true);
@@ -110,7 +110,7 @@ private:
         leftLowCut.template setBypassed<3>(true);
 
         // SETTING LEFT LOW CUT CHAIN SLOPE
-        switch (chainSettings.lowCutSlope) {
+        switch (lowCutSlope) {
             case Slope_12:
             {
                 *leftLowCut.template get<0>().coefficients = *cutCoefficients[0];
